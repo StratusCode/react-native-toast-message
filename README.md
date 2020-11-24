@@ -20,30 +20,30 @@ Render the `Toast` component in your app entry file (along with everything that 
 
 ```js
 // App.jsx
-import React from 'react';
-import Toast from 'react-native-toast-message';
+import React from 'react'
+import Toast from 'react-native-toast-message'
 
 function App(props) {
-  return (
-    <>
-      {/* ... */}
-      <Toast ref={(ref) => Toast.setRef(ref)} />
-    </>
-  );
+	return (
+		<>
+			{/* ... */}
+			<Toast ref={(ref) => Toast.setRef(ref)} />
+		</>
+	)
 }
 
-export default App;
+export default App
 ```
 
 Then use it anywhere in your app, by calling any `Toast` method directly:
 
 ```js
-import Toast from 'react-native-toast-message';
+import Toast from 'react-native-toast-message'
 
 Toast.show({
-  text1: 'Hello',
-  text2: 'This is some something 👋'
-});
+	text1: 'Hello',
+	text2: 'This is some something 👋',
+})
 ```
 
 ## API
@@ -57,25 +57,25 @@ If only one value is shown, that's the default.
 
 ```js
 Toast.show({
-  type: 'success | error | info',
-  position: 'top | bottom',
-  text1: 'Hello',
-  text2: 'This is some something 👋',
-  visibilityTime: 4000,
-  autoHide: true,
-  topOffset: 30,
-  bottomOffset: 40,
-  onShow: () => {},
-  onHide: () => {}
-});
+	type: 'success | error | info',
+	position: 'top | bottom',
+	text1: 'Hello',
+	text2: 'This is some something 👋',
+	visibilityTime: 4000,
+	autoHide: true,
+	topOffset: 30,
+	bottomOffset: 40,
+	onShow: () => {},
+	onHide: () => {},
+})
 ```
 
 ### `hide(options = {})`
 
 ```js
 Toast.hide({
-  onHide: () => {}
-});
+	onHide: () => {},
+})
 ```
 
 ## Customizing the toast types
@@ -84,42 +84,42 @@ If you want to add custom types - or overwrite the existing ones - you can add a
 
 ```js
 // App.jsx
-import React from 'react';
-import Toast from 'react-native-toast-message';
+import React from 'react'
+import Toast from 'react-native-toast-message'
 
 const toastConfig = {
-  success: (internalState) => (
-    <View style={{ height: 60, width: '100%', backgroundColor: 'pink' }}>
-      <Text>{internalState.text1}</Text>
-      <Text>{internalState.props.guid}</Text>
-    </View>
-  ),
-  error: () => {},
-  info: () => {},
-  any_custom_type: () => {}
-};
-
-function App(props) {
-  return (
-    <>
-      {/* ... */}
-      <Toast config={toastConfig} ref={(ref) => Toast.setRef(ref)} />
-    </>
-  );
+	success: (internalState) => (
+		<View style={{ height: 60, width: '100%', backgroundColor: 'pink' }}>
+			<Text>{internalState.text1}</Text>
+			<Text>{internalState.props.guid}</Text>
+		</View>
+	),
+	error: () => {},
+	info: () => {},
+	any_custom_type: () => {},
 }
 
-export default App;
+function App(props) {
+	return (
+		<>
+			{/* ... */}
+			<Toast config={toastConfig} ref={(ref) => Toast.setRef(ref)} />
+		</>
+	)
+}
+
+export default App
 ```
 
 Then just use the library as before
 
 ```js
 Toast.show({
-  type: 'any_custom_type',
-  props: { onPress: () => {}, guid: 'guid-id' }
-});
+	type: 'any_custom_type',
+	props: { onPress: () => {}, guid: 'guid-id' },
+})
 ```
 
 ## Credits
 
-The icons for the default `success`, `error` and `info` types are made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [flaticon.com](www.flaticon.com).
+The icons for the default `success`, `error` and `info` types are made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [flaticon.com](https://www.flaticon.com).
