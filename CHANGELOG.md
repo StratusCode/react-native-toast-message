@@ -13,74 +13,14 @@ Headers are one of:
 
 ### Changed
 
--   Forked from https://github.com/calintamas/react-native-toast-message
--   Converted code to typescript
+-   Forked from v1.3.4 of Calin Tamas' [react-native-toast-message](https://github.com/calintamas/react-native-toast-message)
+-   Rewrote component in typescript using react context and hooks
 -   Switched out raster images for SVGs
 
 ### Added
 
 -   Added react and react-native as peer dependencies
 -   Added new peer dependency [react-native-svg](https://www.npmjs.com/package/react-native-svg) for SVG icons
--   Added ToastProvider and useToast
+-   Added ToastProvider and useToast as the new API
 -   Added optional onPress to toast
--   Added a queue for toasts -- if you show a toast while one is already shown it will appear after the current one is gone
-
-## [1.3.4]
-
-### Fixed
-
--   Shadows not visible on Android [#43](https://github.com/calintamas/react-native-toast-message/issues/43) ([DerekFei](https://github.com/DerekFei) in [#51](https://github.com/calintamas/react-native-toast-message/pull/51))
-
-## [1.3.3]
-
-### Fixed
-
--   `position: bottom`, damping value must be grater than 0 error [#41](https://github.com/calintamas/react-native-toast-message/issues/41) ([juliancwirko](https://github.com/juliancwirko) in [#48](https://github.com/calintamas/react-native-toast-message/pull/48))
-
-## [1.3.2]
-
-### Changed
-
--   Given texts `text1` and `text2` are rendered conditionally now ([sardok](https://github.com/sardok) in [#40](https://github.com/calintamas/react-native-toast-message/pull/40))
-
-### Fixed
-
--   Custom toast does not hide completely if its `height` is greater than the default 60 ([#35](https://github.com/calintamas/react-native-toast-message/issues/35))
-
-## [1.3.1]
-
-### Fixed
-
--   Fix typescript import err
-
-## [1.3.0]
-
-### Added
-
--   Render custom toast types using a `config` prop
--   A default `info` type toast
--   `onShow` and `onHide` callbacks when using `Toast.show({ onShow, onHide })`
-
-### Changed
-
--   `autoHide` is now `true` by default
-
-### Removed
-
--   `renderSuccessToast` and `renderErrorToast` props are no longer relevant, so they were removed
-
-### Fixed
-
--   `onHide` is called when the toast is dismissed by a swipe gesture
-
-## [1.2.3]
-
-### Fixed
-
--   #6 Android status bar has bottom shadow
-
-## [1.2.2]
-
-### Added
-
--   Swipe to dismiss gesture
+-   Added a queue for toasts -- if you queue a toast while one is already shown it will appear after the current one is gone

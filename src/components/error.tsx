@@ -1,11 +1,9 @@
 import React, { ComponentProps } from 'react'
+import { ErrorIcon } from '~assets'
+import { useToastContext } from '~contexts'
+import { BaseToast } from './base'
 
-import BaseToast from './base'
-import colors from '../colors'
-import Error from '../assets/svgs/Error'
-
-const ErrorToast: React.FC<ComponentProps<typeof BaseToast>> = (props) => {
-	return <BaseToast {...props} color={colors.error} iconElement={<Error />} />
+export const ErrorToast: React.FC<ComponentProps<typeof BaseToast>> = (props) => {
+	const { colors } = useToastContext()
+	return <BaseToast {...props} color={colors.error} iconElement={<ErrorIcon />} />
 }
-
-export default ErrorToast

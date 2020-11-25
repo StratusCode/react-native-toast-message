@@ -1,11 +1,9 @@
 import React, { ComponentProps } from 'react'
+import { SuccessIcon } from '~assets'
+import { useToastContext } from '~contexts'
+import { BaseToast } from './base'
 
-import BaseToast from './base'
-import colors from '../colors'
-import Success from '../assets/svgs/Success'
-
-const SuccessToast: React.FC<ComponentProps<typeof BaseToast>> = (props) => {
-	return <BaseToast {...props} color={colors.success} iconElement={<Success />} />
+export const SuccessToast: React.FC<ComponentProps<typeof BaseToast>> = (props) => {
+	const { colors } = useToastContext()
+	return <BaseToast {...props} color={colors.success} iconElement={<SuccessIcon />} />
 }
-
-export default SuccessToast

@@ -1,11 +1,9 @@
 import React, { ComponentProps } from 'react'
+import { InfoIcon } from '~assets'
+import { useToastContext } from '~contexts'
+import { BaseToast } from './base'
 
-import BaseToast from './base'
-import colors from '../colors'
-import Info from '../assets/svgs/Info'
-
-const InfoToast: React.FC<ComponentProps<typeof BaseToast>> = (props) => {
-	return <BaseToast {...props} color={colors.info} iconElement={<Info />} />
+export const InfoToast: React.FC<ComponentProps<typeof BaseToast>> = (props) => {
+	const { colors } = useToastContext()
+	return <BaseToast {...props} color={colors.info} iconElement={<InfoIcon />} />
 }
-
-export default InfoToast

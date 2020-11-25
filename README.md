@@ -1,33 +1,33 @@
-# react-native-toast-message
+# react-native-toast-hook
 
-[![npm version](https://img.shields.io/npm/v/react-native-toast-message)](https://www.npmjs.com/package/react-native-toast-message)
-[![npm downloads](https://img.shields.io/npm/dw/react-native-toast-message)](https://www.npmjs.com/package/react-native-toast-message)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![npm version](https://img.shields.io/npm/v/@stratuscode/react-native-toast-hook)](https://www.npmjs.com/package/@stratuscode/react-native-toast-hook)
+[![npm downloads](https://img.shields.io/npm/dw/@stratuscode/react-native-toast-hook)](https://www.npmjs.com/package/@stratuscode/react-native-toast-hook)
 
-An animated toast message component for React Native that can be called imperatively.
+An animated toast message component for React Native using context API and hooks written in typescript.
 
 ## Install
 
 ```
-yarn add react-native-toast-message
+npm install --save react-native-toast-hook
 ```
 
 ![ToastSuccess](success-toast.gif)
 
 ## Usage
 
-Render the `Toast` component in your app entry file (along with everything that might be rendered there) and set a ref to it.
+Render the `ToastProvider` component in your app entry file.
 
 ```js
 // App.jsx
 import React from 'react'
-import Toast from 'react-native-toast-message'
+import { ToastProvider } from '@stratuscode/react-native-toast-hook'
 
 function App(props) {
 	return (
 		<>
-			{/* ... */}
-			<Toast ref={(ref) => Toast.setRef(ref)} />
+			<ToastProvider>
+				{/* ... */}
+			</ToastProvider>
 		</>
 	)
 }
@@ -35,75 +35,123 @@ function App(props) {
 export default App
 ```
 
-Then use it anywhere in your app, by calling any `Toast` method directly:
+Then use it anywhere in your app with the `useToast` hook, which provides access to `showToast`, `queueToast`, `hideToast`, and `clearToastQueue`:
 
 ```js
-import Toast from 'react-native-toast-message'
+import React from 'react'
+import { useToast } from '@stratuscode/react-native-toast-hook'
 
-Toast.show({
-	text1: 'Hello',
-	text2: 'This is some something 👋',
-})
+function() {
+	const { queueToast } = useToast()
+
+	function makeToast() {
+		queueToast({
+			title: 'Hey you!',
+			message: 'The magic medicine works!',
+		})
+	}
+
+	return (
+		<View>
+			<Button onPress={makeToast} title="Toast It"/>
+		</View>
+	)
+}
+```
+
+If your toasts aren't showing up you might need to manually place the `Toaster`. For example, if you're using `react-navigation` you'll probably want the `Toaster` just before the end of your `</NavigationContainer>`. The `ToastProvider` component will render the `Toaster` component automatically unless you pass `renderToaster={false}` to the `ToastProvider`, so do that and then place your `Toaster` where you want it.
+
+```js
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import { Toaster } from '@stratuscode/react-native-toast-hook'
+
+const Drawer = createDrawerNavigator()
+function Navigation() {
+	return (
+		<NavigationContainer>
+			<Drawer.Navigator {...etc} />
+			<Toaster />
+		</NavigationContainer>
+	)
+}
 ```
 
 ## API
 
-### `show(options = {})`
+### `useToast()`
 
-When calling the `show` method, you can use the following `options` to suit your needs. Everything is optional, unless specified otherwise.
+The useToast hook gives you access to:
+- `queueToast: (toast: ToastProps) => void` - shows the toast immediately if one is not currently showing, otherwise queues up the toast to be shown after the current one goes away.
+- `showToast: (toast: ToastProps) => void` - cuts in line and shows the toast immediately (the currently shown toast will show again after this important one goes away).
+- `hideToast: () => void` - hides the currently shown toast (if any are in queue the next one will show).
+- `clearToastQueue: () => void` - hides the currently shown toast and removes the entire queue.
 
-The usage of `|` below, means that only one of the values show should be used.
-If only one value is shown, that's the default.
+See the [types.ts](https://github.com/StratusCode/react-native-toast-hook/blob/master/src/types/index.ts) file for the most up-to-date options in `ToastProps` and for more advanced usages, but the gist is:
 
-```js
-Toast.show({
-	type: 'success | error | info',
-	position: 'top | bottom',
-	text1: 'Hello',
-	text2: 'This is some something 👋',
-	visibilityTime: 4000,
-	autoHide: true,
-	topOffset: 30,
-	bottomOffset: 40,
-	onShow: () => {},
-	onHide: () => {},
+```ts
+queueToast({
+	title?: 'Top line, bolded text',
+	message?: 'Bottom line, normal text',
+	type?: 'info' | 'success' | 'warning' | 'error',
+	position?: 'top' | 'bottom',
+	visibilityTime?: 4000,
+	autoHide?: true,
+	onPress?: (toast: ToastProps) => void  // callback for when the toast is pressed, e.g. to handle deep navigation
 })
 ```
 
-### `hide(options = {})`
+## Global customizations
 
-```js
-Toast.hide({
-	onHide: () => {},
-})
-```
+`ToastProvider` accepts some props to set global defaults. 
+- The `defaults` prop takes the same object that `queueToast`/`showToast` take and will cause those functions to fallback on the default values for each prop that their object doesn't have defined.
+- The `colors` prop lets you override any colors used (see `ToastColors` in [types.ts](https://github.com/StratusCode/react-native-toast-hook/blob/master/src/types/index.ts))
+- The `customToasts` lets you configure your own toast components from scratch or override the default ones (see below).
 
 ## Customizing the toast types
 
-If you want to add custom types - or overwrite the existing ones - you can add a `config` prop when rendering the `Toast` in your app `root`.
+If you want to add custom types, or overwrite the existing ones, you can add a `customToasts` prop when rendering the `ToastProvider`. You can import the components that are used by default and customize them, use BaseToast and its render functions for almost total control, or provide your own toast implementation for total control.
 
 ```js
 // App.jsx
 import React from 'react'
-import Toast from 'react-native-toast-message'
+import { Text } from 'react-native'
+import { ToastProvider, BaseToast, InfoToast, WarningToast } from '@stratuscode/react-native-toast-hook'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const toastConfig = {
-	success: (internalState) => (
+	// modify only the formatting of the default info toast's title
+	info: (toast) => (
+		<InfoToast renderTitle={(toast) => (
+			<Text style={{ fontWeight: 'normal', color: 'fuchsia' }}>
+				{toast.title}
+			</Text>
+		)} />
+	),
+	// override existing success toast with entirely custom toast
+	success: (toast) => (
 		<View style={{ height: 60, width: '100%', backgroundColor: 'pink' }}>
-			<Text>{internalState.text1}</Text>
-			<Text>{internalState.props.guid}</Text>
+			<Text>{toast.title}</Text>
+			<Text>{toast.message}</Text>
 		</View>
 	),
-	error: () => {},
-	info: () => {},
-	any_custom_type: () => {},
+	// modify only the icon of the default warning toast
+	warning: (toast) => (
+		<WarningToast renderIcon={({color}) => (
+			<Icon name="rocket" size={24} color={color} />
+		)} />
+	),
+	// create a new type of toast, just supply 'any_custom_type' as the `type` prop to `queueToast`/`showToast`
+	any_custom_type: (toast) => {},
 }
 
 function App(props) {
 	return (
 		<>
-			{/* ... */}
-			<Toast config={toastConfig} ref={(ref) => Toast.setRef(ref)} />
+			<ToastProvider customToasts={toastConfig}>
+				{/* ... */}
+			</ToastProvider>
 		</>
 	)
 }
@@ -114,12 +162,14 @@ export default App
 Then just use the library as before
 
 ```js
-Toast.show({
+queueToast({
 	type: 'any_custom_type',
-	props: { onPress: () => {}, guid: 'guid-id' },
+	title: 'Woohoo',
+	message: 'My own custom type (:',
 })
 ```
 
 ## Credits
 
-The icons for the default `success`, `error` and `info` types are made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [flaticon.com](https://www.flaticon.com).
+- This library was originally forked from Calin Tamas' [react-native-toast-message](https://github.com/calintamas/react-native-toast-message).
+- Icons (`info`, `success`, `warning`, `error`, and `close`) came from [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect)'s [Basic UI Icon Pack](https://www.flaticon.com/packs/basic-ui-4) from [flaticon.com](https://www.flaticon.com).

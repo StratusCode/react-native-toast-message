@@ -1,5 +1,7 @@
 node_modules
 package.json
 package-lock.json
-tsconfig.json
 .yalc
+README.md
+tsconfig.json
+*.yml
