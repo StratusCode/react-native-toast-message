@@ -8,10 +8,10 @@ import React, {
 } from 'react'
 import { Animated, LayoutChangeEvent, PanResponder, StyleProp, ViewStyle } from 'react-native'
 
-import { useInterval } from '~hooks'
-import type { BaseToastProps, ToastProps, ToastComponentsConfig } from '~types'
-import { useToastContext } from '~contexts/toast-context'
-import styles from '~styles'
+import { useInterval } from '~/hooks'
+import type { BaseToastProps, ToastProps, ToastComponentsConfig } from '~/types'
+import { useToastContext } from '~/contexts/toast-context'
+import styles from '~/styles'
 
 import { SuccessToast } from './success'
 import { WarningToast } from './warning'

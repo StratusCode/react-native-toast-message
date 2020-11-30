@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { StyleSheet, ViewStyle } from 'react-native'
-import type { Color } from '~types'
+import type { Color } from '~/types'
 
 interface BaseStyles {
 	base: ViewStyle

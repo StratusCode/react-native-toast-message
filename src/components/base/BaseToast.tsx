@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
 
-import { CloseIcon } from '~assets'
-import { useToastContext } from '~contexts'
-import type { BaseToastProps } from '~types'
+import { CloseIcon } from '~/assets'
+import { useToastContext } from '~/contexts'
+import type { BaseToastProps } from '~/types'
 import { useBaseStyles } from './styles'
 
 export const BaseToast: React.FC<BaseToastProps> = (props) => {

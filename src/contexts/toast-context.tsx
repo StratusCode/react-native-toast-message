@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useMemo, useRef, useState } from 'react'
-import { Toaster } from '~components/Toaster'
-import type { IToastContext, ToastProps, ToastProviderProps, UseToastHook } from '~types'
+import { Toaster } from '~/components/Toaster'
+import type { IToastContext, ToastProps, ToastProviderProps, UseToastHook } from '~/types'
 
 const defaultContext: Partial<IToastContext> = {
 	defaults: {
