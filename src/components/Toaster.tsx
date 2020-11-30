@@ -102,11 +102,12 @@ const ToasterInternal: React.FC = () => {
 	const animate = useCallback(
 		({ toValue }: { toValue: number }): Promise<Animated.CompositeAnimation> => {
 			return new Promise((resolve) => {
-				Animated.spring(animation, {
+				const spring = Animated.spring(animation, {
 					toValue,
 					friction,
 					useNativeDriver: true,
-				}).start(() => resolve())
+				})
+				spring.start(() => resolve(spring))
 			})
 		},
 		[animation, friction]
