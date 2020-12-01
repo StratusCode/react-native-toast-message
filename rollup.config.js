@@ -24,9 +24,7 @@ export default {
 		commonjs({
 			include: /node_modules/,
 		}),
-		typescript({
-			useTsconfigDeclarationDir: true,
-		}),
+		typescript(),
 		json(),
 		replace({
 			__version__: pkg.version,
