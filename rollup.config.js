@@ -4,6 +4,7 @@ import replace from '@rollup/plugin-replace'
 import resolve from '@rollup/plugin-node-resolve'
 import externals from 'rollup-plugin-node-externals'
 import typescript from 'rollup-plugin-typescript2'
+import copy from 'rollup-plugin-copy'
 
 import pkg from './package.json'
 
@@ -30,6 +31,9 @@ export default {
 		json(),
 		replace({
 			__version__: pkg.version,
+		}),
+		copy({
+			targets: [{ src: 'README.md', dest: 'dist' }],
 		}),
 	],
 }
