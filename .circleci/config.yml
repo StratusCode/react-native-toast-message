@@ -51,7 +51,7 @@ jobs:
           at: ~/project
       - run:
           name: Authenticate to NPM
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/dist/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
       - run:
           name: Publish to NPM
           command: npm publish dist
