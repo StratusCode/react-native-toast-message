@@ -13,6 +13,7 @@
 		"build:package": "sc-node package dist",
 		"build:watch": "sc-node rollup-watch run-s build:package yalc:push",
 		"clean": "rimraf dist",
+		"es:lint": "eslint ./src",
 		"lint": "run-s *:lint",
 		"prepublishOnly": "sc-node package dist",
 		"prettier": "prettier ./src --write",
