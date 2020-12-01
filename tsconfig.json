@@ -8,6 +8,7 @@
     // "checkJs": true,                       /* Report errors in .js files. */
     "jsx": "react",                           /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
     "declaration": true,                      /* Generates corresponding '.d.ts' file. */
+    "declarationDir": "dist",
     "declarationMap": true,                   /* Generates corresponding '.d.ts' file. */
     "sourceMap": true,                        /* Generates corresponding '.map' file. */
     // "outFile": "./",                       /* Concatenate and emit output to single file. */
@@ -62,6 +63,6 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "exclude": [
-    "node_modules", "types", "babel.config.js", "metro.config.js", "jest.config.js"
+    "node_modules", "types", "babel.config.js", "metro.config.js", "jest.config.js", "dist"
   ]
 }
