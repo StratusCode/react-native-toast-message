@@ -30,7 +30,7 @@
 		"prettier": "prettier ./src --write",
 		"prettier:lint": "prettier ./src --check",
 		"sort-package-json:lint": "npx sort-package-json --check",
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "exit 0",
 		"watch": "npm-run-all clean --parallel *:watch",
 		"yalc:publish": "cd dist && yalc publish",
 		"yalc:push": "npm run yalc:publish -- --push --no-scripts --changed"
