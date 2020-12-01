@@ -15,8 +15,8 @@ interface BaseStyles {
 }
 
 export const useBaseStyles = (
-	whiteColor: Color,
-	borderLeftColor: Color,
+	backgroundColor: Color,
+	leftBorder: Color,
 	titleColor: Color,
 	messageColor: Color
 ): StyleSheet.NamedStyles<BaseStyles> => {
@@ -28,7 +28,7 @@ export const useBaseStyles = (
 					height: 60,
 					width: '90%',
 					borderRadius: 6,
-					backgroundColor: whiteColor,
+					backgroundColor: backgroundColor,
 					shadowOffset: { width: 0, height: 0 },
 					shadowOpacity: 0.1,
 					shadowRadius: 6,
@@ -36,7 +36,7 @@ export const useBaseStyles = (
 				},
 				borderLeft: {
 					borderLeftWidth: 5,
-					borderLeftColor: borderLeftColor,
+					borderLeftColor: leftBorder,
 				},
 				iconContainer: {
 					paddingHorizontal: 14,
@@ -72,6 +72,6 @@ export const useBaseStyles = (
 					color: messageColor,
 				},
 			}),
-		[borderLeftColor, messageColor, titleColor, whiteColor]
+		[leftBorder, messageColor, titleColor, backgroundColor]
 	)
 }

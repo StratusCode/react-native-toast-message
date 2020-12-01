@@ -121,11 +121,11 @@ export interface ToastColors {
 	/**
 	 * Defaults to #fff
 	 */
-	white?: Color
+	background?: Color
 	/**
 	 * Defaults to #D8D8D8
 	 */
-	borderLeftColor?: Color
+	leftBorder?: Color
 	/**
 	 * Defaults to #221D23
 	 */

@@ -22,8 +22,8 @@ export const BaseToast: React.FC<BaseToastProps> = (props) => {
 
 	const { colors } = useToastContext()
 	const styles = useBaseStyles(
-		colors.white,
-		colors.borderLeftColor,
+		colors.background,
+		colors.leftBorder,
 		colors.title,
 		colors.message
 	)

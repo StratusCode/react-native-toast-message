@@ -14,8 +14,8 @@ const defaultContext: Partial<IToastContext> = {
 		friction: 8,
 	},
 	colors: {
-		white: '#FFF',
-		borderLeftColor: '#D8D8D8',
+		background: '#fff',
+		leftBorder: '#D8D8D8',
 		title: '#221D23',
 		message: '#221D23',
 		closeIcon: '#221D23',
