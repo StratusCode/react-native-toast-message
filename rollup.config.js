@@ -5,6 +5,7 @@ import resolve from "@rollup/plugin-node-resolve"
 import externals from "rollup-plugin-node-externals"
 import typescript from "rollup-plugin-typescript2"
 import copy from "rollup-plugin-copy"
+import ttypescript from "ttypescript"
 
 import pkg from "./package.json"
 
@@ -27,6 +28,7 @@ export default {
 		}),
 		typescript({
 			useTsconfigDeclarationDir: true,
+			typescript: ttypescript,
 		}),
 		json(),
 		replace({

@@ -9,15 +9,7 @@ Headers are one of:
 
 -   `Added`, `Changed`, `Removed` or `Fixed`.
 
-## [2.0.3]
-
-### Changed
-
--   No significant code changes
--   Switched singleQuotes off in prettier config
--   Fixed CI badge in README
-
-## [2.0.2]
+## [2.0.4]
 
 ### Changed
 
@@ -33,6 +25,6 @@ Headers are one of:
 -   Added optional onPress to toast
 -   Added a queue for toasts -- if you queue a toast while one is already shown it will appear after the current one is gone
 
-## [2.0.(0|1)]
+## [2.0.(0-3)]
 
--   Broken builds. Removed from npm. Use 2.0.2+
+-   Broken builds. Removed from npm. Use 2.0.4+

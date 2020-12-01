@@ -1,1 +1,1 @@
-ignores: ["~"]
+ignores: ["~", "@zerollup/ts-transform-paths"]
