@@ -1,0 +1,95 @@
+version: 2.1
+
+orbs:
+  slack: circleci/slack@3.4.2
+  codecov: codecov/codecov@1.1.0
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:14
+
+workflows:
+  version: 2
+  package-with-publish:
+    jobs:
+      - package:
+          context: package
+          filters:
+            tags:
+              only: /.*/
+      - publish:
+          context: publish
+          requires:
+            - package
+          filters:
+            tags:
+              only: /^v[0-9]+[0-9\.]+$/
+            branches:
+              ignore: /.*/
+
+jobs:
+  package:
+    executor: node
+    steps:
+      - setup
+      - build
+      - lint
+      - test
+      - package
+      - codecov/upload
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - dist
+      - slack/status
+  publish:
+    executor: node
+    steps:
+      - setup
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Authenticate to NPM
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/dist/.npmrc
+      - run:
+          name: Publish to NPM
+          command: npm publish dist
+      - slack/status
+commands:
+  setup:
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-dependencies-{{ checksum "package-lock.json" }}
+            - node-dependencies-
+      - run:
+          name: Install Node dependencies
+          command: |
+            npm ci
+      - save_cache:
+          key: node-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+            - ~/.npm
+  build:
+    steps:
+      - run:
+          name: Build
+          command: npm run build
+  test:
+    steps:
+      - run:
+          name: Test
+          command: npm run test
+  lint:
+    steps:
+      - run:
+          name: Lint
+          command: npm run lint
+  package:
+    steps:
+      - run:
+          name: Package
+          command: npm run build:package
