@@ -2,6 +2,16 @@
 	"name": "@stratuscode/react-native-toast-hook",
 	"version": "2.0.0",
 	"description": "Toast message component for React Native",
+	"keywords": [
+		"react-native",
+		"toast"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/StratusCode/react-native-toast-hook.git"
+	},
+	"license": "MIT",
+	"author": "StratusCode <contact@stratuscode.com>",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"files": [
@@ -13,32 +23,19 @@
 		"build:package": "sc-node package dist",
 		"build:watch": "sc-node rollup-watch run-s build:package yalc:push",
 		"clean": "rimraf dist",
+		"depcheck:lint": "npx depcheck",
 		"es:lint": "eslint ./src",
 		"lint": "run-s *:lint",
 		"prepublishOnly": "sc-node package dist",
 		"prettier": "prettier ./src --write",
 		"prettier:lint": "prettier ./src --check",
+		"sort-package-json:lint": "npx sort-package-json --check",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"watch": "npm-run-all clean --parallel *:watch",
 		"yalc:publish": "cd dist && yalc publish",
 		"yalc:push": "npm run yalc:publish -- --push --no-scripts --changed"
 	},
-	"keywords": [
-		"react-native",
-		"toast"
-	],
-	"author": "StratusCode <contact@stratuscode.com>",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/StratusCode/react-native-toast-hook.git"
-	},
 	"dependencies": {},
-	"peerDependencies": {
-		"react": ">=16.13.0",
-		"react-native": ">=0.63.0",
-		"react-native-svg": ">=12.1.0"
-	},
 	"devDependencies": {
 		"@react-native-community/eslint-config": "^2.0.0",
 		"@rollup/plugin-commonjs": "^16.0.0",
@@ -51,6 +48,7 @@
 		"@typescript-eslint/eslint-plugin": "^4.6.1",
 		"@typescript-eslint/parser": "^4.6.1",
 		"eslint": "^7.12.1",
+		"eslint-config-prettier": "^6.15.0",
 		"eslint-import-resolver-typescript": "^2.3.0",
 		"eslint-plugin-etc": "^1.1.7",
 		"eslint-plugin-import": "^2.20.1",
@@ -65,5 +63,10 @@
 		"rollup-plugin-node-externals": "^2.2.0",
 		"rollup-plugin-typescript2": "^0.29.0",
 		"typescript": "^4.1.2"
+	},
+	"peerDependencies": {
+		"react": ">=16.13.0",
+		"react-native": ">=0.63.0",
+		"react-native-svg": ">=12.1.0"
 	}
 }
