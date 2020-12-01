@@ -9,6 +9,16 @@ Headers are one of:
 
 -   `Added`, `Changed`, `Removed` or `Fixed`.
 
+## [2.0.5]
+
+### Fixed
+
+-   Fixed autohide
+
+### Changed
+
+-   Changed topOffset's default to 40 due to iPhone notches
+
 ## [2.0.4]
 
 ### Changed
