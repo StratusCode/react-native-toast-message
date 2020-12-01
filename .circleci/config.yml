@@ -54,7 +54,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
       - run:
           name: Publish to NPM
-          command: npm publish dist
+          command: npm publish dist --access public
       - slack/status
 commands:
   setup:
