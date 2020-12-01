@@ -1,7 +1,7 @@
-import React from 'react'
-import Svg, { Path } from 'react-native-svg'
-import { useToastContext } from '~/contexts/toast-context'
-import type { SvgProps } from '~/types'
+import React from "react"
+import Svg, { Path } from "react-native-svg"
+import { useToastContext } from "~/contexts/toast-context"
+import type { SvgProps } from "~/types"
 
 export function InfoIcon({ color, size = 24 }: SvgProps): React.ReactElement {
 	const { colors } = useToastContext()

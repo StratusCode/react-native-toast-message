@@ -1,6 +1,5 @@
 {
 	"bracketSpacing": true,
-	"singleQuote": true,
 	"printWidth": 99,
 	"semi": false,
 	"trailingComma": "es5",

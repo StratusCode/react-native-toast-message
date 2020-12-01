@@ -5,18 +5,18 @@ import React, {
 	useMemo,
 	useRef,
 	useState,
-} from 'react'
-import { Animated, LayoutChangeEvent, PanResponder, StyleProp, ViewStyle } from 'react-native'
+} from "react"
+import { Animated, LayoutChangeEvent, PanResponder, StyleProp, ViewStyle } from "react-native"
 
-import { useInterval } from '~/hooks'
-import type { BaseToastProps, ToastProps, ToastComponentsConfig } from '~/types'
-import { useToastContext } from '~/contexts/toast-context'
-import styles from '~/styles'
+import { useInterval } from "~/hooks"
+import type { BaseToastProps, ToastProps, ToastComponentsConfig } from "~/types"
+import { useToastContext } from "~/contexts/toast-context"
+import styles from "~/styles"
 
-import { SuccessToast } from './success'
-import { WarningToast } from './warning'
-import { ErrorToast } from './error'
-import { InfoToast } from './info'
+import { SuccessToast } from "./success"
+import { WarningToast } from "./warning"
+import { ErrorToast } from "./error"
+import { InfoToast } from "./info"
 
 const defaultComponentsConfig: ToastComponentsConfig = {
 	success: (props: BaseToastProps) => <SuccessToast {...props} />,
@@ -58,7 +58,7 @@ const ToasterInternal: React.FC = () => {
 		({ dy }: { dy: number }): void => {
 			let value = 1 + dy / 100
 
-			if (position === 'bottom') {
+			if (position === "bottom") {
 				value = 1 - dy / 100
 			}
 
@@ -73,14 +73,14 @@ const ToasterInternal: React.FC = () => {
 		({ dy, vy }: { dy: number; vy: number }): void => {
 			let value = 1 + dy / 100
 
-			if (position === 'bottom') {
+			if (position === "bottom") {
 				value = 1 - dy / 100
 			}
 
 			if (value < 0.65) {
 				Animated.spring(animation, {
 					toValue: -2,
-					speed: position === 'bottom' ? vy : -vy,
+					speed: position === "bottom" ? vy : -vy,
 					useNativeDriver: true,
 				}).start(() => {
 					if (activeToast) {
@@ -143,12 +143,12 @@ const ToasterInternal: React.FC = () => {
 	const bottomOffset = activeToast?.bottomOffset ?? defaults.bottomOffset
 	const topOffset = activeToast?.topOffset ?? defaults.topOffset
 	const height = heightRef.current ?? defaults.height
-	const baseStyle = useMemo<Partial<ComponentProps<typeof Animated.View>['style']>>(() => {
-		const offset = position === 'bottom' ? bottomOffset : topOffset
+	const baseStyle = useMemo<Partial<ComponentProps<typeof Animated.View>["style"]>>(() => {
+		const offset = position === "bottom" ? bottomOffset : topOffset
 
 		// +5 px to completely hide the toast under StatusBar (on Android)
 		const range = [height + 5, -offset]
-		const outputRange = position === 'bottom' ? range : range.map((i) => -i)
+		const outputRange = position === "bottom" ? range : range.map((i) => -i)
 
 		const translateY = animation.interpolate({
 			inputRange: [0, 1],

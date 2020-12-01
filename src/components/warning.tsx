@@ -1,7 +1,7 @@
-import React, { ComponentProps } from 'react'
-import { WarningIcon } from '~/assets'
-import { useToastContext } from '~/contexts'
-import { BaseToast } from './base'
+import React, { ComponentProps } from "react"
+import { WarningIcon } from "~/assets"
+import { useToastContext } from "~/contexts"
+import { BaseToast } from "./base"
 
 export const WarningToast: React.FC<ComponentProps<typeof BaseToast>> = (props) => {
 	const { colors } = useToastContext()

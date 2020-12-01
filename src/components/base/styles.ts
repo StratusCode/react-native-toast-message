@@ -1,6 +1,6 @@
-import { useMemo } from 'react'
-import { StyleSheet, ViewStyle } from 'react-native'
-import type { Color } from '~/types'
+import { useMemo } from "react"
+import { StyleSheet, ViewStyle } from "react-native"
+import type { Color } from "~/types"
 
 interface BaseStyles {
 	base: ViewStyle
@@ -24,9 +24,9 @@ export const useBaseStyles = (
 		() =>
 			StyleSheet.create({
 				base: {
-					flexDirection: 'row',
+					flexDirection: "row",
 					height: 60,
-					width: '90%',
+					width: "90%",
 					borderRadius: 6,
 					backgroundColor: backgroundColor,
 					shadowOffset: { width: 0, height: 0 },
@@ -40,8 +40,8 @@ export const useBaseStyles = (
 				},
 				iconContainer: {
 					paddingHorizontal: 14,
-					justifyContent: 'center',
-					alignItems: 'center',
+					justifyContent: "center",
+					alignItems: "center",
 				},
 				icon: {
 					width: 16,
@@ -49,13 +49,13 @@ export const useBaseStyles = (
 				},
 				contentContainer: {
 					flex: 1,
-					justifyContent: 'center',
-					alignItems: 'flex-start', // in case of rtl the text will start from the right
+					justifyContent: "center",
+					alignItems: "flex-start", // in case of rtl the text will start from the right
 				},
 				closeButtonContainer: {
 					paddingHorizontal: 14,
-					alignItems: 'center',
-					justifyContent: 'center',
+					alignItems: "center",
+					justifyContent: "center",
 				},
 				closeIcon: {
 					width: 9,
@@ -63,7 +63,7 @@ export const useBaseStyles = (
 				},
 				title: {
 					fontSize: 12,
-					fontWeight: 'bold',
+					fontWeight: "bold",
 					marginBottom: 3,
 					color: titleColor,
 				},

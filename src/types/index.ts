@@ -1,15 +1,15 @@
-import { ColorValue } from 'react-native'
-import { Color as SvgColor } from 'react-native-svg'
+import { ColorValue } from "react-native"
+import { Color as SvgColor } from "react-native-svg"
 
 export interface ToastProps {
 	/**
 	 * Use predefined types for standard colors/icons, or configure your own types on the provider and use them here. Defaults to 'info'
 	 */
-	type?: 'info' | 'success' | 'error' | 'warning' | string // TODO: type-safe the custom config values with generics. (this is hard)
+	type?: "info" | "success" | "error" | "warning" | string // TODO: type-safe the custom config values with generics. (this is hard)
 	/**
 	 * Where to show the toasts. Defaults to 'top'
 	 */
-	position?: 'top' | 'bottom'
+	position?: "top" | "bottom"
 	/**
 	 * Bolded top line of text
 	 */
@@ -107,7 +107,7 @@ export interface IToastContext extends ToastContextSettings, UseToastHook {
 
 type OptionalSettings = Pick<
 	ToastProps,
-	'title' | 'message' | 'onShow' | 'onQueue' | 'onHide' | 'onPress'
+	"title" | "message" | "onShow" | "onQueue" | "onHide" | "onPress"
 >
 
 interface ToastContextSettings {

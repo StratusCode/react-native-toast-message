@@ -1,11 +1,11 @@
-import React, { createContext, useCallback, useMemo, useRef, useState } from 'react'
-import { Toaster } from '~/components/Toaster'
-import type { IToastContext, ToastProps, ToastProviderProps, UseToastHook } from '~/types'
+import React, { createContext, useCallback, useMemo, useRef, useState } from "react"
+import { Toaster } from "~/components/Toaster"
+import type { IToastContext, ToastProps, ToastProviderProps, UseToastHook } from "~/types"
 
 const defaultContext: Partial<IToastContext> = {
 	defaults: {
-		position: 'top',
-		type: 'info',
+		position: "top",
+		type: "info",
 		visibilityTime: 4000,
 		autoHide: true,
 		height: 60,
@@ -14,22 +14,22 @@ const defaultContext: Partial<IToastContext> = {
 		friction: 8,
 	},
 	colors: {
-		background: '#fff',
-		leftBorder: '#D8D8D8',
-		title: '#221D23',
-		message: '#221D23',
-		closeIcon: '#221D23',
-		info: '#00c9ff',
-		error: '#fe3618',
-		warning: '#fcc603',
-		success: '#00ac31',
+		background: "#fff",
+		leftBorder: "#D8D8D8",
+		title: "#221D23",
+		message: "#221D23",
+		closeIcon: "#221D23",
+		info: "#00c9ff",
+		error: "#fe3618",
+		warning: "#fcc603",
+		success: "#00ac31",
 	},
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const ToastContext = createContext<IToastContext>(undefined!)
 
-ToastContext.displayName = 'ToastContext'
+ToastContext.displayName = "ToastContext"
 
 const ToastProvider: React.FC<ToastProviderProps> = ({
 	defaults,
@@ -77,11 +77,11 @@ const ToastProvider: React.FC<ToastProviderProps> = ({
 			defaults: {
 				...defaultContext.defaults,
 				...defaults,
-			} as IToastContext['defaults'],
+			} as IToastContext["defaults"],
 			colors: {
 				...defaultContext.colors,
 				...colors,
-			} as IToastContext['colors'],
+			} as IToastContext["colors"],
 			customToasts,
 		}),
 		[
@@ -107,7 +107,7 @@ const ToastProvider: React.FC<ToastProviderProps> = ({
 function useToastContext(): IToastContext {
 	const context = React.useContext<IToastContext>(ToastContext)
 	if (context === undefined) {
-		throw new Error('useToastContext must be used within a ToastProvider')
+		throw new Error("useToastContext must be used within a ToastProvider")
 	}
 	return context
 }
@@ -115,7 +115,7 @@ function useToastContext(): IToastContext {
 function useToast(): UseToastHook {
 	const context = React.useContext<IToastContext>(ToastContext)
 	if (context === undefined) {
-		throw new Error('useToast must be used within a ToastProvider')
+		throw new Error("useToast must be used within a ToastProvider")
 	}
 	return useMemo(
 		() => ({
