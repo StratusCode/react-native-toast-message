@@ -9,7 +9,7 @@ const defaultContext: Partial<IToastContext> = {
 		visibilityTime: 4000,
 		autoHide: true,
 		height: 60,
-		topOffset: 30,
+		topOffset: 40,
 		bottomOffset: 40,
 		friction: 8,
 	},

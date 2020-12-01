@@ -31,7 +31,7 @@ export interface ToastProps {
 	 */
 	height?: number
 	/**
-	 * Points from the top of the screen (when position='top'). Defaults to 30
+	 * Points from the top of the screen (when position='top'). Defaults to 40
 	 */
 	topOffset?: number
 	/**
