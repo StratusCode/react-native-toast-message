@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@stratuscode/react-native-toast-hook)](https://www.npmjs.com/package/@stratuscode/react-native-toast-hook)
 [![npm downloads](https://img.shields.io/npm/dw/@stratuscode/react-native-toast-hook)](https://www.npmjs.com/package/@stratuscode/react-native-toast-hook)
+[![CI Status](https://circleci.com/gh/stratuscode/react-native-toast-hook.svg?style=shield&circle-token=01a30b6f87dedaa5847bf3c85e6b333da11fc64f)](https://app.circleci.com/pipelines/github/stratuscode/react-native-toast-hook)
 
 An animated toast message component for React Native using context API and hooks written in typescript.
 
