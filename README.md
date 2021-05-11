@@ -9,7 +9,7 @@ An animated toast message component for React Native using context API and hooks
 ## Install
 
 ```
-npm install --save react-native-toast-hook
+npm install --save @stratuscode/react-native-toast-hook react-native-svg
 ```
 
 ![ToastSuccess](success-toast.gif)
